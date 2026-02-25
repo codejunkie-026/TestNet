@@ -1,0 +1,210 @@
+:root{
+    --bs-light: #ffff;
+    --bs-dark: #000000;
+    --bs-teal: #066;
+    --bs-grey: #d9d9d9;
+    --bs-teal-10: #affdfd;
+    --bs-text-grey: rgb(190, 190, 190);
+    --bs-transparent: transparent;
+    --bs-accent-main: #3696fc;
+    --bs-accent-dark-2: #192744;
+    --bs-accent-dark: #001276;
+    --bs-accent-dark-alt: #161b2f;
+    --bg-t-background1: #292b3d;
+    --bs-accent-interact: #006de3;
+    --bs-accent-interactive: #1d74d6;
+    --barclays-blue: #00aeef;
+}
+
+
+/*=======
+else
+==========*/
+@media (min-width: 501px){
+    body{
+        display: block;
+    }
+    /*header*/
+    .header {
+        background: var(--barclays-dark);
+        color: white;
+        padding: 20px 0;
+        border-bottom: 4px solid var(--barclays-blue);
+    }
+
+    /* Main Container */
+    .container {
+        max-width: 800px;
+        margin: 40px auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+
+
+
+    /* Dashboard Styles */
+    .dashboard {
+        max-width: 1200px;
+        margin: 40px auto;
+    }
+}
+
+
+
+/*========
+mobile
+================*/
+@media  (max-width: 500px){
+    /*header*/
+    .header {
+        background: var(--bs-light);
+        color: var(--bs-dark);
+        padding: 20px 0;
+    }
+    .header .brand{
+        color: var(--bs-dark);
+        border: 2px solid var(--barclays-blue);
+        border-radius: 20px;
+        padding: 0px 9px;
+    }
+    .offcanvas{
+        width: 200px !important;
+    }
+    .header i{
+        font-size: 30px;
+    }
+    .admin-vanish {
+        padding: 5px 10px;
+    }
+    .admin-vanish i{
+        font-size: 20px;
+        padding: 5px 9px;
+        color: #00aeef;
+        border: 1px solid #00aeef;
+        border-radius: 5px;
+        visibility: hidden;
+    }
+
+    /* Main Container */
+    .container {
+        max-width: 100%;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    /* Form Sections */
+    .form-section {
+        padding: 20px;
+    }
+    .form-header-main{
+        background: #f2fbfe;
+        height: 7rem;
+        width: 100%;
+        display: flex;
+        justify-content: baseline;
+        align-items: center;
+    }
+    .register-header-main{
+        background: #f2fbfe;
+        height: 7rem;
+        width: 100%;
+        display: flex;
+        justify-content: baseline;
+        align-items: center;
+    }
+    .form-header-main p{
+        font-size: 2rem;
+        padding: 5px;text-align: center;
+        margin: 5px;
+        color: #00395d;
+    }
+    .register-header-main p{
+        font-size: 1.5rem;
+        padding: 5px;text-align: center;
+        margin: 5px;
+        color: #00395d;
+    }
+    .form-header-main p::before{
+        content: "";
+        border-left: 5px solid #00aeef;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    .form-header-sub .sub{
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        color: #00395d;
+    }
+
+
+
+    /*=====
+    dashboard
+    ===========*/
+    /* Dashboard Styles */
+    .dashboard {
+        max-width: 1200px;
+        background: var(--bs-light);
+        margin: 0px auto;
+    }
+
+    .dashboard-head{
+        background: var(--bs-light);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .credit-card{
+        width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+        position: relative;
+        color: var(--bs-light);
+        border-radius: 25px;
+        height: 15rem;
+        background: linear-gradient(135deg, var(--barclays-blue) 0%, #0066cc 100%);
+    }
+    .credit-card span{
+        border: 2px solid var(--bs-light);
+        border-radius: 50%;
+        padding: 2px 10px;
+    }
+    .credit-card .a{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    .credit-card .b{
+        position: absolute;
+        top: 20px;
+        right: 40px;
+    }
+
+    .selection{
+        max-width: 250px;
+        padding: 10px;
+        border: none;
+    }
+    .selection:active{
+        border: 2px solid var(--barclays-blue);
+    }
+
+    .quicklinks{
+        display: flex;
+        flex-direction: column  ;
+        justify-content: center;
+        align-items: center;
+    }
+    .ql-btn i{
+        border-radius: 50%;
+        color: var(--bs-light);
+        font-size: 2rem;
+        padding: 5px 12px;
+        margin: 5px;
+    }
+}
