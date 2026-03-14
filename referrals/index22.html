@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REFERALLS Marketplace</title>
+<link rel="icon" href="./assets/vendors/favicon_io/favicon-32x32.png">
+
+<link rel="stylesheet" href="./assets/css/index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>    
+
+    <div class="navbar">
+    <div class="navbar-min">
+        <svg class="svg" viewBox="0 0 461 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" 
+        style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+        <path d="M22.731,88.76l0,-14.455l0.255,-0.253l-0.255,-0.253l0,-28.91l0.255,-0.253l-0.255,-0.253l0,-7.286c0,0 -10.254,-2.324 -10.254,-3.69c0,-2.118 10.254,-6.355 10.254,-6.355c0,0 -18.001,-2.592 -18.001,-4.716c0,-3.065 18.001,-6.863 18.001,-6.863l0.255,-0.253l-0.255,-0.253c0,0 -22.231,-9.976 -22.231,-12.385c0,-2.354 22.231,-2.07 22.231,-2.07l44.659,0c8.169,0 15.57,3.295 20.928,8.62c5.358,5.325 8.674,12.679 8.674,20.797c0,8.118 -3.316,15.472 -8.674,20.797c-5.358,5.325 -12.759,8.62 -20.928,8.62l29.603,29.416l-29.603,0l-14.801,-14.708l0,14.708l-29.857,0Zm32.765,-44.229l-0.28,-28.516c11.726,-0.187 22.187,3.442 22.507,14.085c0.245,8.143 -7.703,15.473 -22.227,14.431Z" style="fill:#ff8c00;stroke:#fff;stroke-width:1px;"/>
+        <g transform="matrix(0.974564,0,0,1,-7.247687,-0)"><g transform="matrix(94.196712,0,0,94.196712,481.289617,88.760194)"></g>
+        <text x="107.17px" y="88.76px" style="font-family:'LeelawadeeUI-Bold', 'Leelawadee UI', sans-serif;font-weight:700;font-size:94.197px;fill:#fff;stroke:#fff;stroke-width:1.01px;stroke-linecap:butt;stroke-miterlimit:2;">EFFERAL</text></g>
+        </svg>
+        <div class="access">
+            <span class="fa fa-user-circle profile" title="Profile" onclick="goToDashboard()"></span>
+            <span onclick="window.location.href='adminlogin.html'" class="profile-admin"><i class="fa fa-user"></i>Admin</span>            
+            <a class="uploadbtn" onclick="window.location.href='upload.html'">+ Post</a>
+            <!--<button onclick="window.location.href='adminlogin.html'" class="admin-btn">Admin Login</button>-->
+        </div>
+    </div>
+    </div>
+
+    <div class="search-section">
+        <div class="search-min ">
+            <form id="searchForm">
+            <select id="categorySelect">
+                <option value="">All Categories</option>
+                <option value="House">Houses</option>
+                <option value="Car">Cars</option>
+                <option value="Services">Services</option>
+                <option value="Dispatch">Dispatch & Delivery</option>
+            </select>
+
+            <input type="text" id="searchInput" placeholder="I am looking for..." required>
+
+            <div class="price-filter">
+                <input type="number" id="minPrice" placeholder="Min ₦">
+                <input type="number" id="maxPrice" placeholder="Max ₦">
+            </div>
+
+            <button type="submit" id="searchBtn">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="categories">
+    <div class="category-card" onclick="filterCategory('House')">
+        <img src="./assets/img/dashboard/houselogo.jpg" alt="House">
+        <h3>Houses</h3>
+    </div>
+    <div class="category-card" onclick="filterCategory('Car')">
+        <img src="images/car.jpg" alt="Car">
+        <h3>Cars</h3>
+    </div>
+    <!-- ADDED SERVICES CATEGORY CARD -->
+    <div class="category-card" onclick="window.location.href='services.html'" 
+        style="background: linear-gradient(135deg, #e8f5e9, #f0f9f0); border: 2px solid #00a82d; cursor: pointer; transition: all 0.3s;">
+        <img src="./assets/img/dashboard/houselogo.jpg" alt="Services" style="filter: hue-rotate(120deg);">
+        <h3 style="color: #00a82d;">Services</h3>
+        <p style="color: #666; font-size: 14px; margin-top: 5px;">Find Professional Help</p>
+    </div>
+    
+    <!-- ADD DISPATCH CATEGORY CARD -->
+    <div class="category-card" onclick="window.location.href='dispatch.html'" 
+        style="background: linear-gradient(135deg, #e8f5e9, #f1f8ff); border: 2px solid #2196F3; cursor: pointer; transition: all 0.3s;">
+        <img src="./assets/img/dashboard/houselogo.jpg" alt="Dispatch" style="filter: hue-rotate(240deg);">
+        <h3 style="color: #2196F3;">Dispatch & Delivery</h3>
+        <p style="color: #666; font-size: 14px; margin-top: 5px;">Instant Delivery Service</p>
+        <div style="margin-top: 8px; font-size: 12px; color: #00a82d;">
+        <i class="fas fa-users"></i> 12 Drivers Online
+        </div>
+    </div>
+    </div>
+
+    <h2 style="text-align:center;" id="listingsTitle">Trending Listings</h2>
+    <div class="listings" id="listingsContainer"></div>
+
+    <!-- Chat Notification Icon -->
+    <div class="chat-notification" id="chatNotification">
+        <i class="fas fa-comments"></i>
+        <div class="chat-badge" id="chatBadge">0</div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-modal-header">
+            <h3><i class="fas fa-comments"></i> Messages</h3>
+            <button class="close-chat" id="closeChat">&times;</button>
+        </div>
+        <div class="chat-modal-body" id="chatModalBody">
+            <div class="no-chats-mini" id="noChatsMini">
+                <i class="fas fa-comment-slash"></i>
+                <p>No messages yet</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-section py-5">
+        <div class="text-center">
+            <h4>Join Our Newsletter</h4>
+            <div><input type="text"><span>Subscribe</span></div>
+        </div>
+        <div class="text-center">
+            <h4 class="fw-bolder">FOR INQUIRY CALL: <a href="tel:08166519795">08166519795</a></h4>
+        </div>
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"></div>
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script type="module">
+import { auth, db } from "./firebase.js";
+import { collection, getDocs, query, where, orderBy, addDoc, deleteDoc, onSnapshot, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+// Initialize chat variables
+let currentUser = null;
+let chatListeners = {};
+let totalUnreadCount = 0;
+
+function goToDashboard() {
+  const user = auth.currentUser;
+  if (user) window.location.href = "dashboard.html";
+  else window.location.href = "login.html";
+}
+window.goToDashboard = goToDashboard;
+
+// ====== CHAT FUNCTIONS ======
+function initChatNotifications() {
+    auth.onAuthStateChanged(async (user) => {
+        if (user) {
+            currentUser = { uid: user.uid, email: user.email };
+            await loadUserProfile(user.uid);
+            setupChatListeners();
+            setupChatEventListeners();
+            
+            // Show chat icon
+            document.getElementById('chatNotification').style.display = 'flex';
+        } else {
+            // Hide chat icon if not logged in
+            document.getElementById('chatNotification').style.display = 'none';
+            document.getElementById('chatModal').classList.remove('active');
+        }
+    });
+}
+
+async function loadUserProfile(userId) {
+    try {
+        const userDocRef = doc(db, "users", userId);
+        const userDoc = await getDoc(userDocRef);
+        
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            currentUser = { ...currentUser, ...userData };
+        } else {
+            // If no profile exists, create a basic one
+            currentUser.name = currentUser.email.split('@')[0] || 'User';
+        }
+    } catch (error) {
+        console.error("Error loading user profile:", error);
+        currentUser.name = 'User';
+    }
+}
+
+function setupChatEventListeners() {
+    // Toggle chat modal
+    document.getElementById('chatNotification').addEventListener('click', toggleChatModal);
+    
+    // Close chat modal
+    document.getElementById('closeChat').addEventListener('click', () => {
+        document.getElementById('chatModal').classList.remove('active');
+    });
+    
+    // Close modal when clicking outside
+    document.addEventListener('click', (e) => {
+        const chatModal = document.getElementById('chatModal');
+        const chatNotification = document.getElementById('chatNotification');
+        
+        if (chatModal.classList.contains('active') && 
+            !chatModal.contains(e.target) && 
+            !chatNotification.contains(e.target)) {
+            chatModal.classList.remove('active');
+        }
+    });
+}
+
+function toggleChatModal() {
+    const chatModal = document.getElementById('chatModal');
+    chatModal.classList.toggle('active');
+    
+    if (chatModal.classList.contains('active')) {
+        // Reset badge when chat is opened
+        totalUnreadCount = 0;
+        updateChatBadge();
+        markAllChatsAsRead();
+    }
+}
+
+function setupChatListeners() {
+    if (!currentUser || !currentUser.uid) {
+        console.log("No current user, skipping chat listeners");
+        return;
+    }
+    
+    console.log("Setting up chat listeners for user:", currentUser.uid);
+    
+    // Clean up any existing listeners
+    if (chatListeners.buyer) chatListeners.buyer();
+    if (chatListeners.seller) chatListeners.seller();
+    
+    try {
+        // Listen to buyer chats (where current user is buyer)
+        const buyerChatsQuery = query(
+            collection(db, "chats"),
+            where("buyerId", "==", currentUser.uid)
+        );
+        
+        // Listen to seller chats (where current user is seller)
+        const sellerChatsQuery = query(
+            collection(db, "chats"),
+            where("sellerId", "==", currentUser.uid)
+        );
+        
+        // Set up real-time listeners
+        const unsubscribeBuyer = onSnapshot(buyerChatsQuery, 
+            (snapshot) => {
+                console.log("Buyer chats updated:", snapshot.size, "chats");
+                processChatSnapshot(snapshot, 'buyer');
+            },
+            (error) => {
+                console.error("Error listening to buyer chats:", error);
+            }
+        );
+        
+        const unsubscribeSeller = onSnapshot(sellerChatsQuery, 
+            (snapshot) => {
+                console.log("Seller chats updated:", snapshot.size, "chats");
+                processChatSnapshot(snapshot, 'seller');
+            },
+            (error) => {
+                console.error("Error listening to seller chats:", error);
+            }
+        );
+        
+        chatListeners.buyer = unsubscribeBuyer;
+        chatListeners.seller = unsubscribeSeller;
+        
+    } catch (error) {
+        console.error("Error setting up chat listeners:", error);
+    }
+}
+
+function processChatSnapshot(snapshot, role) {
+    const chats = [];
+    totalUnreadCount = 0;
+    
+    snapshot.forEach((doc) => {
+        try {
+            const chatData = doc.data();
+            const chatId = doc.id;
+            
+            console.log("Processing chat:", chatId, chatData);
+            
+            let partnerId, partnerName, unreadCount = 0;
+            
+            if (role === 'buyer') {
+                partnerId = chatData.sellerId;
+                partnerName = chatData.sellerName || 'Seller';
+            } else {
+                partnerId = chatData.buyerId;
+                partnerName = chatData.buyerName || 'Buyer';
+            }
+            
+            // Safely get unread count
+            if (chatData.unreadCount && typeof chatData.unreadCount === 'object') {
+                unreadCount = chatData.unreadCount[currentUser.uid] || 0;
+            }
+            
+            totalUnreadCount += unreadCount;
+            
+            chats.push({
+                id: chatId,
+                partnerId: partnerId,
+                partnerName: partnerName,
+                lastMessage: chatData.lastMessage || 'No messages yet',
+                lastUpdated: chatData.lastUpdated?.toDate?.() || 
+                            (chatData.createdAt?.toDate?.() || new Date()),
+                unreadCount: unreadCount,
+                productTitle: chatData.productTitle || 'Product Inquiry'
+            });
+            
+        } catch (error) {
+            console.error("Error processing chat document:", error);
+        }
+    });
+    
+    console.log("Total chats found:", chats.length, "Total unread:", totalUnreadCount);
+    
+    // Sort by last updated (newest first)
+    chats.sort((a, b) => b.lastUpdated - a.lastUpdated);
+    
+    // Update UI
+    updateChatModal(chats);
+    updateChatBadge();
+}
+
+function updateChatModal(chats) {
+    const chatModalBody = document.getElementById('chatModalBody');
+    
+    if (chats.length === 0) {
+        chatModalBody.innerHTML = `
+            <div class="no-chats-mini">
+                <i class="fas fa-comment-slash"></i>
+                <p>No messages yet</p>
+                <p style="font-size: 12px; margin-top: 10px; color: #666;">
+                    Start a conversation by messaging a seller or buyer
+                </p>
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '';
+    chats.forEach(chat => {
+        const isUnread = chat.unreadCount > 0;
+        const timeAgo = getTimeAgo(chat.lastUpdated);
+        const initials = getInitials(chat.partnerName);
+        const lastMessagePreview = chat.lastMessage ? 
+            (chat.lastMessage.length > 30 ? chat.lastMessage.substring(0, 30) + '...' : chat.lastMessage) :
+            'No messages yet';
+        
+        html += `
+            <div class="chat-item-mini ${isUnread ? 'unread' : ''}" 
+                 data-chat-id="${chat.id}"
+                 data-partner-id="${chat.partnerId}"
+                 data-partner-name="${chat.partnerName}">
+                <div class="chat-avatar-mini" style="background-color: ${getAvatarColor(chat.partnerId)};">
+                    ${initials}
+                </div>
+                <div class="chat-info-mini">
+                    <div class="chat-name-mini">
+                        <span style="font-weight: 600;">${escapeHtml(chat.partnerName)}</span>
+                        ${isUnread ? `<span class="unread-badge">${chat.unreadCount}</span>` : ''}
+                    </div>
+                    <div class="chat-preview-mini" style="color: ${isUnread ? '#333' : '#666'}; font-weight: ${isUnread ? '500' : 'normal'};">
+                        ${escapeHtml(lastMessagePreview)}
+                    </div>
+                    <div class="chat-preview-mini" style="font-size: 11px; color: #888; margin-top: 2px;">
+                        ${timeAgo} • ${escapeHtml(chat.productTitle.substring(0, 20))}${chat.productTitle.length > 20 ? '...' : ''}
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    chatModalBody.innerHTML = html;
+    
+    // Add click listeners to chat items
+    document.querySelectorAll('.chat-item-mini').forEach(item => {
+        item.addEventListener('click', () => {
+            const chatId = item.getAttribute('data-chat-id');
+            const partnerId = item.getAttribute('data-partner-id');
+            const partnerName = item.getAttribute('data-partner-name');
+            
+            console.log("Opening chat:", chatId, partnerName);
+            
+            // Close the modal first
+            document.getElementById('chatModal').classList.remove('active');
+            
+            // Open chat in new page
+            window.location.href = `chat.html?chatId=${chatId}&partnerId=${partnerId}&partnerName=${encodeURIComponent(partnerName)}`;
+        });
+    });
+}
+
+function updateChatBadge() {
+    const chatBadge = document.getElementById('chatBadge');
+    
+    if (totalUnreadCount > 0) {
+        chatBadge.style.display = 'flex';
+        chatBadge.textContent = totalUnreadCount > 9 ? '9+' : totalUnreadCount;
+        
+        // Add pulse animation
+        chatBadge.style.animation = 'pulse 2s infinite';
+    } else {
+        chatBadge.style.display = 'none';
+        chatBadge.style.animation = 'none';
+    }
+}
+
+async function markAllChatsAsRead() {
+    if (!currentUser) return;
+    
+    try {
+        // Get all chats where user has unread messages
+        const [buyerChats, sellerChats] = await Promise.all([
+            getDocs(query(collection(db, "chats"), where("buyerId", "==", currentUser.uid))),
+            getDocs(query(collection(db, "chats"), where("sellerId", "==", currentUser.uid)))
+        ]);
+        
+        const batch = db.batch();
+        
+        // Process buyer chats
+        buyerChats.forEach(doc => {
+            const chatData = doc.data();
+            if (chatData.unreadCount && chatData.unreadCount[currentUser.uid] > 0) {
+                batch.update(doc.ref, {
+                    [`unreadCount.${currentUser.uid}`]: 0
+                });
+            }
+        });
+        
+        // Process seller chats
+        sellerChats.forEach(doc => {
+            const chatData = doc.data();
+            if (chatData.unreadCount && chatData.unreadCount[currentUser.uid] > 0) {
+                batch.update(doc.ref, {
+                    [`unreadCount.${currentUser.uid}`]: 0
+                });
+            }
+        });
+        
+        await batch.commit();
+    } catch (error) {
+        console.error("Error marking chats as read:", error);
+    }
+}
+
+// Helper functions
+function getTimeAgo(date) {
+    const now = new Date();
+    const diffMs = now - date;
+    const diffSec = Math.floor(diffMs / 1000);
+    const diffMin = Math.floor(diffSec / 60);
+    const diffHour = Math.floor(diffMin / 60);
+    const diffDay = Math.floor(diffHour / 24);
+    
+    if (diffSec < 60) return 'Just now';
+    if (diffMin < 60) return `${diffMin}m ago`;
+    if (diffHour < 24) return `${diffHour}h ago`;
+    if (diffDay < 7) return `${diffDay}d ago`;
+    return date.toLocaleDateString();
+}
+
+function getAvatarColor(userId) {
+    if (!userId) return '#00a82d';
+    const colors = ['#00a82d', '#2196F3', '#9C27B0', '#FF9800', '#E91E63', '#009688'];
+    let hash = 0;
+    for (let i = 0; i < userId.length; i++) {
+        hash = userId.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return colors[Math.abs(hash) % colors.length];
+}
+
+function getInitials(name) {
+    if (!name) return '?';
+    return name.split(' ').map(part => part.charAt(0)).join('').toUpperCase().substring(0, 2);
+}
+
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// ====== ORIGINAL LISTING FUNCTIONS ======
+async function fetchListings(category = "", searchText = "") {
+  const listingsCol = collection(db, "listings");
+  let q = category ? query(listingsCol, where("category", "==", category)) : query(listingsCol, orderBy("createdAt", "desc"));
+  const snapshot = await getDocs(q);
+
+  let listings = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+  const min = Number(document.getElementById("minPrice").value);
+  const max = Number(document.getElementById("maxPrice").value);
+
+  if (searchText) {
+    const lower = searchText.toLowerCase();
+    listings = listings.filter(l => l.title.toLowerCase().includes(lower));
+  }
+
+  if (min || max) {
+    listings = listings.filter(l => (!min || l.price >= min) && (!max || l.price <= max));
+  }
+
+  displayListings(listings);
+}
+
+async function toggleFavourite(listing) {
+  const user = auth.currentUser;
+  if (!user) return alert("Login required");
+
+  const favRef = collection(db, "favourites");
+  const q = query(favRef, where("userId", "==", user.uid), where("listingId", "==", listing.id));
+  const snap = await getDocs(q);
+
+  if (snap.empty) {
+    await addDoc(favRef, { userId: user.uid, listingId: listing.id, data: listing });
+  } else {
+    snap.forEach(d => deleteDoc(d.ref));
+  }
+}
+
+function displayListings(listings) {
+  const container = document.getElementById("listingsContainer");
+  container.innerHTML = "";
+
+  if (!listings.length) {
+    container.innerHTML = "<p class='no-listings'>No listings found.</p>";
+    return;
+  }
+
+  listings.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "listing";
+
+    div.innerHTML = `
+      <span class="fav-btn"><i class="fa fa-heart"></i></span>
+      <img src="${item.imageURL || ''}">
+      <div class="details">
+        <h4>${item.title}</h4>
+        <p>${item.category}</p>
+        <p>₦${item.price}</p>
+        <button class="ref-btn" style="margin-top:5px;">Copy Listing Referral</button>
+      </div>
+    `;
+
+    div.querySelector(".fav-btn").onclick = (e) => {
+      e.stopPropagation();
+      toggleFavourite(item);
+      e.target.classList.toggle("active");
+    };
+
+    // ✅ NEW: pass listingId via URL instead of localStorage
+    div.onclick = () => {
+      const url = `details.html?listingId=${item.id}`;
+      window.location.href = url;
+    };
+
+    div.querySelector(".ref-btn").onclick = (e) => {
+      e.stopPropagation();
+      const referralLink = `http://192.168.43.29:59414/signup.html?ref=${encodeURIComponent(item.referralCode)}`;
+      navigator.clipboard.writeText(referralLink)
+        .then(() => alert("Listing referral link copied!"))
+        .catch(err => alert("Failed to copy link: " + err));
+    };
+
+    // Add message seller button if user is logged in and not the seller
+    const user = auth.currentUser;
+    if (user && item.userId !== user.uid) {
+      const messageBtn = document.createElement('button');
+      messageBtn.className = 'ref-btn';
+      messageBtn.style.background = '#00a82d';
+      messageBtn.style.marginTop = '8px';
+      messageBtn.innerHTML = '<i class="fas fa-comment"></i> Message Seller';
+      messageBtn.onclick = (e) => {
+        e.stopPropagation();
+        
+        if (!user) {
+          alert('Please login to message sellers');
+          window.location.href = 'login.html';
+          return;
+        }
+        
+        if (item.userId === user.uid) {
+          alert('You cannot message yourself');
+          return;
+        }
+        
+        // Open chat with seller
+        window.location.href = `chat.html?sellerId=${item.userId}&sellerName=${encodeURIComponent(item.sellerName || 'Seller')}&productTitle=${encodeURIComponent(item.title)}`;
+      };
+      
+      div.querySelector('.details').appendChild(messageBtn);
+    }
+
+    container.appendChild(div);
+  });
+}
+
+document.getElementById("searchForm").onsubmit = (e) => {
+  e.preventDefault();
+  fetchListings(
+    document.getElementById("categorySelect").value,
+    document.getElementById("searchInput").value.trim()
+  );
+};
+
+// Initialize everything when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    fetchListings();
+    initChatNotifications(); // Initialize chat notifications
+    
+    // Add hover effect to services category card
+    const servicesCard = document.querySelector('.category-card:nth-last-child(2)');
+    if (servicesCard) {
+        servicesCard.addEventListener('mouseenter', () => {
+            servicesCard.style.transform = 'translateY(-5px)';
+            servicesCard.style.boxShadow = '0 8px 20px rgba(0, 168, 45, 0.3)';
+        });
+        
+        servicesCard.addEventListener('mouseleave', () => {
+            servicesCard.style.transform = 'translateY(0)';
+            servicesCard.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+        });
+    }
+    
+    // Add hover effect to dispatch category card
+    const dispatchCard = document.querySelector('.category-card:nth-last-child(1)');
+    if (dispatchCard) {
+        dispatchCard.addEventListener('mouseenter', () => {
+            dispatchCard.style.transform = 'translateY(-5px)';
+            dispatchCard.style.boxShadow = '0 8px 20px rgba(33, 150, 243, 0.3)';
+        });
+        
+        dispatchCard.addEventListener('mouseleave', () => {
+            dispatchCard.style.transform = 'translateY(0)';
+            dispatchCard.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+        });
+    }
+});
+
+// Export functions for global access
+window.filterCategory = (category) => {
+    if (category === 'Services') {
+        window.location.href = 'services.html';
+    } else if (category === 'Dispatch') {
+        window.location.href = 'dispatch.html';
+    } else {
+        fetchListings(category, "");
+        document.getElementById("listingsTitle").textContent = `${category} Listings`;
+        document.getElementById("categorySelect").value = category;
+    }
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="Nyerhovwo.T" content="Referral™, fullstack">
+    <meta name="generator" content="htvp.0.84.0">
+    <title>Referral - Listing Details</title>
+    <!--icon-->
+    <link rel="icon" href="./assets/vendors/favicon_io/favicon-32x32.png">
+    <!--main-->
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <!--vendor-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+<style>
+  /*==========
+navbar
+==================*/
+.navbar{
+    position: fixed;
+    height: 3rem;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    color: var(--bs-light);
+    background: var(--accent-main);
+}
+.navbar.sticky{
+    position: fixed;
+    z-index: 100;
+    height: 3rem;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: #7c3f0ce1;
+    color: white;
+}
+.navbar-min{
+    width: 100%;
+    margin: 0px 11px;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar .svg{
+    visibility: hidden;
+    height: 20px;
+    width: 150px;
+}
+.navbar .svg1{
+    position: absolute;
+    top: 2px;
+    left: 25px;
+    height: 40px;
+    width: 150px;
+}
+.navbar .access{
+    position: absolute;
+    top: 10px;
+    right: 25px;
+}
+.navbar .profile{
+    font-size: 1.4rem;
+}
+.navbar .profile-admin{
+    border: 2px solid var(--bs-light);
+    padding: 5px 5px;
+    border-radius: 5px;
+}
+.navbar .uploadbtn{
+    padding: 5px 5px;
+    border: 2px solid var(--bs-light);
+    border-radius: 5px;
+    color: var(--bs-light);
+    text-decoration: none;
+}
+
+@media (max-width: 500px){
+    .navbar{
+        height: 3.5rem;
+    }
+    .navbar-min{
+        margin: 5px 11px;
+        position: relative;
+    }
+    .navbar .svg1{
+        position: absolute;
+        height: 55px;
+        width: 120px;
+        top: -20px;
+        left: 5px;
+    }
+    .navbar .access{
+        position: absolute;
+        top: -3px;
+        right: 5px;
+    }
+    .navbar .profile{
+        height: 70px;
+    }
+    .navbar .profile-admin{
+        background: var(--accent-main);
+        border: 2px solid var(--bs-light);
+        padding: 5px 5px;
+        border-radius: 5px;
+    }
+    .navbar .uploadbtn{
+        padding: 5px 5px;
+        border: 2px solid var(--bs-light);
+        border-radius: 5px;
+        color: var(--bs-light);
+        text-decoration: none;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+  <!--navbar-->
+  <div class="navbar shadow">
+      <div class="navbar-min">
+          <svg class="svg" viewBox="0 0 475 89" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+              <g transform="matrix(1,0,0,1,-1.06121,-191.739806)">
+                  <g transform="matrix(0.296026,0,0,0.294165,-20.857216,162.334106)">
+                      <path d="M379.907,316.059L435.63,400L290.033,400L250,350L250,400L149.139,400L149.139,350.861L150,350L149.139,349.139L149.139,250.861L150,250L149.139,249.139L149.139,224.37C149.139,224.37 114.5,216.47 114.5,211.825C114.5,204.624 149.139,190.222 149.139,190.222C149.139,190.222 88.329,181.412 88.329,174.19C88.329,163.77 149.139,150.861 149.139,150.861L150,150L149.139,149.139C149.139,149.139 74.042,115.226 74.042,107.036C74.042,99.033 149.139,100 149.139,100L300,100L300.381,100.001C301.489,99.976 302.601,99.963 303.715,99.963C376.521,99.963 435.63,153.277 435.63,218.944C435.63,259.02 413.615,294.495 379.907,316.059ZM303.26,163.181C286.311,166.49 250.829,161.805 241.874,175.167C232.928,188.516 250.5,219.904 253.785,236.942C260.359,271.037 293.203,293.346 327.083,286.731C360.963,280.115 383.132,247.064 376.558,212.969C369.984,178.874 337.141,156.565 303.26,163.181Z" style="fill:rgb(255,140,0);"/>
+                  </g>
+                  <g transform="matrix(1.836015,0,0,1.883934,-269.487679,-201.969449)">
+                      <g transform="matrix(50,0,0,50,406.717634,255.831355)">
+                      </g>
+                      <text x="208.134px" y="255.831px" style="font-family:'LeelawadeeUI-Bold', 'Leelawadee UI', sans-serif;font-weight:700;font-size:50px;fill:white;">EFFERAL</text>
+                  </g>
+              </g>
+          </svg>
+          <svg class="svg1" viewBox="0 0 475 89" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+              <g transform="matrix(1,0,0,1,-1.06121,-191.739806)">
+                  <g transform="matrix(0.296026,0,0,0.294165,-20.857216,162.334106)">
+                      <path d="M379.907,316.059L435.63,400L290.033,400L250,350L250,400L149.139,400L149.139,350.861L150,350L149.139,349.139L149.139,250.861L150,250L149.139,249.139L149.139,224.37C149.139,224.37 114.5,216.47 114.5,211.825C114.5,204.624 149.139,190.222 149.139,190.222C149.139,190.222 88.329,181.412 88.329,174.19C88.329,163.77 149.139,150.861 149.139,150.861L150,150L149.139,149.139C149.139,149.139 74.042,115.226 74.042,107.036C74.042,99.033 149.139,100 149.139,100L300,100L300.381,100.001C301.489,99.976 302.601,99.963 303.715,99.963C376.521,99.963 435.63,153.277 435.63,218.944C435.63,259.02 413.615,294.495 379.907,316.059ZM303.26,163.181C286.311,166.49 250.829,161.805 241.874,175.167C232.928,188.516 250.5,219.904 253.785,236.942C260.359,271.037 293.203,293.346 327.083,286.731C360.963,280.115 383.132,247.064 376.558,212.969C369.984,178.874 337.141,156.565 303.26,163.181Z" style="fill:rgb(255, 255, 255);"/>
+                  </g>
+                  <g transform="matrix(1.836015,0,0,1.883934,-269.487679,-201.969449)">
+                      <g transform="matrix(50,0,0,50,406.717634,255.831355)">
+                      </g>
+                      <text x="208.134px" y="255.831px" style="font-family:'LeelawadeeUI-Bold', 'Leelawadee UI', sans-serif;font-weight:700;font-size:50px;fill:white;">EFFERAL</text>
+                  </g>
+              </g>
+          </svg>
+          <div class="access">
+              <span class="fa fa-user-circle profile" title="Profile" onclick="goToDashboard()"></span>
+              <span onclick="window.location.href='adminlogin.html'" class="profile-admin"><i class="fa fa-user"></i>Admin</span>            
+              <a class="uploadbtn" onclick="window.location.href='upload.html'">+ Post</a>
+              <!--<button onclick="window.location.href='adminlogin.html'" class="admin-btn">Admin Login</button>-->
+          </div>
+      </div>
+  </div>
+
+  <header>
+    <h1>Listing Details</h1>
+  </header>
+
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d31698.127806650333!2d5.390600040959501!3d6.737372996656824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sng!4v1763821766321!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+
+  <div class="header-container">
+    <img id="listingImage" class="listing-img" src="" alt="Listing Image">
+    <h2 id="listingTitle"></h2>
+    <p id="listingCategory"></p>
+    <p class="price" id="listingPrice"></p>
+    <p class="description" id="listingDescription"></p>
+
+    <div class="seller-box">
+      <img id="sellerPhoto" class="seller-photo" src="images/default-user.jpg" alt="Seller Photo">
+      <div class="seller-info">
+        <h3>
+          <span id="sellerName">Loading...</span>
+          <span id="verifiedBadge" class="verified-badge" style="display:none;">✔ Verified</span>
+        </h3>
+        <!-- ✅ Chat Seller Button Linked - CHANGED -->
+        <button id="chatSellerBtn">💬 Chat with Seller</button>
+      </div>
+    </div>
+
+    <div class="safety-note">
+      ⚠️ All transactions are advised to be made only on REFERALLS. Any transaction made outside the site is at users' own risk.
+    </div>
+
+    <button onclick="goBack()">← Back to Dashboard</button>
+
+    <!-- ✅ PAY NOW BUTTON -->
+    <button id="payNowBtn">💰 Pay Now</button>
+
+    <!-- ✅ Find Roommate Button -->
+    <button id="findRoommateBtn">🔍 Find Roommate</button>
+
+    <!-- ✅ Roommate Modal -->
+    <div id="roommateModal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Find a Roommate</h2>
+        <form id="roommateForm">
+          <input type="number" id="amountAvailable" placeholder="Amount You Can Contribute (₦)" required>
+          <select id="smoking">
+            <option value="">Smoking Preference</option>
+            <option value="yes">Smoker</option>
+            <option value="no">Non-Smoker</option>
+          </select>
+          <select id="pets">
+            <option value="">Pets</option>
+            <option value="yes">Has Pets</option>
+            <option value="no">No Pets</option>
+          </select>
+          <textarea id="bio" rows="3" placeholder="Tell us about yourself" required></textarea>
+          <button type="submit">Submit & Find Matches</button>
+        </form>
+        <div id="matchedUsers"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="listing-container" id="sellerListings"></div>
+
+  <footer class="mt-5 py-5 p-3 foot">
+        <div class="footer-head">
+            <svg class="svg1" viewBox="0 0 475 89" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                <g transform="matrix(1,0,0,1,-1.06121,-191.739806)">
+                    <g transform="matrix(0.296026,0,0,0.294165,-20.857216,162.334106)">
+                        <path d="M379.907,316.059L435.63,400L290.033,400L250,350L250,400L149.139,400L149.139,350.861L150,350L149.139,349.139L149.139,250.861L150,250L149.139,249.139L149.139,224.37C149.139,224.37 114.5,216.47 114.5,211.825C114.5,204.624 149.139,190.222 149.139,190.222C149.139,190.222 88.329,181.412 88.329,174.19C88.329,163.77 149.139,150.861 149.139,150.861L150,150L149.139,149.139C149.139,149.139 74.042,115.226 74.042,107.036C74.042,99.033 149.139,100 149.139,100L300,100L300.381,100.001C301.489,99.976 302.601,99.963 303.715,99.963C376.521,99.963 435.63,153.277 435.63,218.944C435.63,259.02 413.615,294.495 379.907,316.059ZM303.26,163.181C286.311,166.49 250.829,161.805 241.874,175.167C232.928,188.516 250.5,219.904 253.785,236.942C260.359,271.037 293.203,293.346 327.083,286.731C360.963,280.115 383.132,247.064 376.558,212.969C369.984,178.874 337.141,156.565 303.26,163.181Z" style="fill:rgb(255, 255, 255);"/>
+                    </g>
+                    <g transform="matrix(1.836015,0,0,1.883934,-269.487679,-201.969449)">
+                        <g transform="matrix(50,0,0,50,406.717634,255.831355)">
+                        </g>
+                        <text x="208.134px" y="255.831px" style="font-family:'LeelawadeeUI-Bold', 'Leelawadee UI', sans-serif;font-weight:700;font-size:50px;fill:white;">EFFERAL</text>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        <div class="container">
+            <div class="row gy-4">
+                <ul class="col-lg-3 col-md-4">
+                    <h4 class="fw-bolder list-unstyled text-capitalize">useful links</h4>
+                    <li class="list-unstyled"><a href="#">Home</a></li>
+                    <li class="list-unstyled"><a href="#">About Us</a></li>
+                    <li class="list-unstyled"><a href="#">Services</a></li>
+                    <li class="list-unstyled"><a href="#">Terms Of Service</a></li>
+                    <li class="list-unstyled"><a href="#">Privacy Policy</a></li>
+                </ul>
+                <ul class="col-lg-3 col-md-4">
+                    <h4 class="fw-bolder list-unstyled text-capitalize">services</h4>
+                    <li class="list-unstyled"><a href="">Car Sale</a></li>
+                    <li class="list-unstyled"><a href="">Land Auction</a></li>
+                    <li class="list-unstyled"><a href="">House Purchase</a></li>
+                    <li class="list-unstyled"><a href="">House Rent Off</a></li>
+                    <li class="list-unstyled"><a href="">Courier Services</a></li>
+                </ul>
+                <div class="col-lg-6 col-md-10">
+                    <h4>Our Newsletter</h4>
+                    <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+                    <form action="forms/newsletter.php" method="post" class="php-email-form">
+                        <div class="newsletter-form"><input type="email" name="email"><input class="submit" type="submit" value="Subscribe"></div>
+                        <!--<div class="loading">Loading</div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">Your subscription request has been sent. Thank you!</div>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <script type="module">
+  import { auth, db } from "./firebase.js";
+  import { collection, addDoc, getDocs, query, where, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+  let listing = null;
+  let sellerUserId = null;
+  let sellerUsername = null;
+
+  async function loadListing() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const listingId = urlParams.get("listingId");
+    if (!listingId) return alert("Listing ID not found");
+
+    const listingRef = doc(db, "listings", listingId);
+    const snap = await getDoc(listingRef);
+    if (!snap.exists()) return alert("Listing not found");
+
+    listing = { id: snap.id, ...snap.data() };
+    
+    // Store seller information for chat
+    sellerUserId = listing.userId; // This is the seller's user ID
+
+    document.getElementById("listingImage").src = listing.imageURL || "images/default-user.jpg";
+    document.getElementById("listingTitle").innerText = listing.title;
+    document.getElementById("listingCategory").innerText = "Category: " + listing.category;
+    document.getElementById("listingPrice").innerText = "₦" + listing.price;
+    document.getElementById("listingDescription").innerText = listing.description || "No description available.";
+    document.getElementById("sellerPhoto").src = listing.sellerPhoto || "images/default-user.jpg";
+    if(listing.verifiedSeller) document.getElementById("verifiedBadge").style.display = "inline-block";
+
+    const userRef = doc(db, "users", listing.userId);
+    const userSnap = await getDoc(userRef);
+    if(userSnap.exists()) {
+      const userData = userSnap.data();
+      sellerUsername = userData.username || "Unknown Seller";
+      document.getElementById("sellerName").innerText = sellerUsername;
+    }
+  }
+
+  loadListing();
+
+  // ===== PAYSTACK DIRECT LINK =====
+  document.getElementById("payNowBtn").addEventListener("click", () => {
+    const user = auth.currentUser;
+    if (!user) return alert("Please login to pay.");
+    if (!listing?.id) return alert("Listing not loaded.");
+
+    // Open Paystack payment link in a new tab
+    window.open("https://paystack.shop/pay/referall-pay", "_blank");
+  });
+
+  // ===== ROOMMATE SYSTEM =====
+  const findRoommateBtn = document.getElementById("findRoommateBtn");
+  const modal = document.getElementById("roommateModal");
+  const closeModal = modal.querySelector(".close");
+  findRoommateBtn.onclick = () => { if(auth.currentUser) modal.style.display="block"; else alert("Please login to find roommates."); };
+  closeModal.onclick = () => modal.style.display="none";
+  window.onclick = (e)=>{ if(e.target === modal) modal.style.display="none"; };
+
+  document.getElementById("roommateForm").addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const user = auth.currentUser;
+    if(!user) return alert("Please login to submit roommate request.");
+    const amountAvailable = Number(document.getElementById("amountAvailable").value);
+    const smoking = document.getElementById("smoking").value;
+    const pets = document.getElementById("pets").value;
+    const bio = document.getElementById("bio").value;
+
+    await addDoc(collection(db,"roommate_requests"),{
+      userId: user.uid,
+      listingId: listing.id,
+      listingPrice: listing.price,
+      amountAvailable,
+      smoking,
+      pets,
+      bio,
+      createdAt: new Date()
+    });
+
+    alert("✅ Request submitted. Finding matches...");
+    const q = query(collection(db,"roommate_requests"), where("listingId","==",listing.id));
+    const snapshot = await getDocs(q);
+    const requests = snapshot.docs.map(d=>({id:d.id, ...d.data()}));
+
+    const matches = requests.filter(r=>r.userId!==user.uid).map(r=>({...r, totalContribution: r.amountAvailable + amountAvailable}));
+    const matchedUsersDiv = document.getElementById("matchedUsers");
+    matchedUsersDiv.innerHTML = "<h3>Matched Roommates</h3>";
+    if(matches.length===0) matchedUsersDiv.innerHTML += "<p>No matches found yet.</p>";
+    matches.forEach(m=>{
+      const div = document.createElement("div");
+      div.className="user-card";
+      div.innerHTML = `<strong>User:</strong> ${m.userId}<br><strong>Contributing:</strong> ₦${m.amountAvailable}<br><button onclick="startChat('${m.userId}')">💬 Chat</button>`;
+      matchedUsersDiv.appendChild(div);
+    });
+  });
+
+  // ===== CHAT BUTTON FUNCTION - UPDATED FOR UNIQUE CHATS =====
+  document.getElementById("chatSellerBtn").addEventListener("click", async () => {
+    const user = auth.currentUser;
+    if (!user) {
+      alert("Please login to chat with the seller.");
+      return;
+    }
+    
+    if (!sellerUserId) {
+      alert("Seller information not loaded. Please refresh the page.");
+      return;
+    }
+
+    // Store the current user as buyer
+    localStorage.setItem("buyerId", user.uid);
+    localStorage.setItem("buyerName", user.displayName || "Buyer_" + user.uid.substring(0, 6));
+    
+    // Generate a unique chat ID
+    const generateChatId = (buyerId, sellerId) => {
+      const ids = [buyerId, sellerId].sort();
+      return `${ids[0]}_${ids[1]}`;
+    };
+    
+    const chatId = generateChatId(user.uid, sellerUserId);
+    
+    // Store chat info temporarily
+    localStorage.setItem("currentChatId", chatId);
+    localStorage.setItem("currentSellerId", sellerUserId);
+    localStorage.setItem("currentSellerName", sellerUsername || "Seller");
+    
+    // Redirect to chat page with seller info
+    window.location.href = `chat.html?sellerId=${sellerUserId}&sellerName=${encodeURIComponent(sellerUsername || "Seller")}`;
+  });
+
+  // ===== ROOMMATE CHAT FUNCTION =====
+  window.startChat = (roommateUserId) => {
+    const user = auth.currentUser;
+    if (!user) {
+      alert("Please login to chat.");
+      return;
+    }
+    
+    // For roommate chat, treat the other user as "seller" for chat purposes
+    localStorage.setItem("buyerId", user.uid);
+    localStorage.setItem("buyerName", user.displayName || "User_" + user.uid.substring(0, 6));
+    
+    // Redirect to chat page
+    window.location.href = `chat.html?sellerId=${roommateUserId}&sellerName=Roommate`;
+  };
+
+  window.goBack = () => {
+    window.location.href = "index.html";
+  };
+  </script>
+
+</body>
+</html>

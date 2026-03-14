@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="Nyerhovwo.T" content="Referral™, fullstack">
+  <meta name="generator" content="htvp.0.84.0">
+  <title>Referral - Flash Sales</title>
+  <!--icon-->
+  <link rel="icon" href="./assets/vendors/favicon_io/favicon-32x32.png">
+  <!--main-->
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <!--vendor-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <style>
+    :root {
+          --bs-light: white;
+          --bs-light-muted: rgba(255, 255, 255, 0.801);
+          --bs-dark: black;
+          --bs-danger: red;
+          --bs-success: green;
+          --accent-main: #fd7e14;
+          --accent-main-1: #5f2f08e1;
+          --accent-main-2: #fc821ee1;
+          --accent-hover-light: #ffb77c;
+          --accent-hover-dark: #d36104;
+    }
+    body { 
+      font-family: Arial, sans-serif; 
+      background: #f4f6f8; 
+    }
+    h2 { 
+      text-align: center; 
+      padding-top: 5rem;
+      color: black;
+    }
+    /*==========
+    navbar
+    ==================*/
+    .navbar{
+        position: fixed;
+        height: 3rem;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        color: var(--bs-light);
+        background: var(--accent-main);
+    }
+    .navbar.sticky{
+        position: fixed;
+        z-index: 100;
+        height: 3rem;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        background: #7c3f0ce1;
+        color: white;
+    }
+    .navbar-min{
+        width: 100%;
+        margin: 0px 11px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .navbar .svg{
+        visibility: hidden;
+        height: 20px;
+        width: 150px;
+    }
+    .navbar .svg1{
+        position: absolute;
+        top: 2px;
+        left: 25px;
+        height: 40px;
+        width: 150px;
+    }
+    .navbar .access{
+        position: absolute;
+        top: 10px;
+        right: 25px;
+    }
+    .navbar .profile{
+        font-size: 1.4rem;
+    }
+    .navbar .profile-admin{
+        border: 2px solid var(--bs-light);
+        padding: 5px 5px;
+        border-radius: 5px;
+    }
+    .navbar .uploadbtn{
+        padding: 5px 5px;
+        border: 2px solid var(--bs-light);
+        border-radius: 5px;
+        color: var(--bs-light);
+        text-decoration: none;
+    }
+
+    @media (max-width: 500px){
+        .navbar{
+            height: 3.5rem;
+        }
+        .navbar-min{
+            margin: 5px 11px;
+            position: relative;
+        }
+        .navbar .svg1{
+            position: absolute;
+            height: 55px;
+            width: 120px;
+            top: -20px;
+            left: 5px;
+        }
+        .navbar .access{
+            position: absolute;
+            top: -3px;
+            right: 5px;
+        }
+        .navbar .profile{
+            height: 70px;
+        }
+        .navbar .profile-admin{
+            background: var(--accent-main);
+            border: 2px solid var(--bs-light);
+            padding: 5px 5px;
+            border-radius: 5px;
+        }
+        .navbar .uploadbtn{
+            padding: 5px 5px;
+            border: 2px solid var(--bs-light);
+            border-radius: 5px;
+            color: var(--bs-light);
+            text-decoration: none;
+        }
+    }
+    .flash-card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 300px;
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+    }
+    .flash-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .winner {
+      background: #ffd700;
+      color: #000;
+      padding: 5px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 5px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+    }
+    button {
+      background: orange;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!--navbar-->
+  <div class="navbar">
+      <div class="navbar-min">
+          <svg class="svg" viewBox="0 0 475 89" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+              <g transform="matrix(1,0,0,1,-1.06121,-191.739806)">
+                  <g transform="matrix(0.296026,0,0,0.294165,-20.857216,162.334106)">
+                      <path d="M379.907,316.059L435.63,400L290.033,400L250,350L250,400L149.139,400L149.139,350.861L150,350L149.139,349.139L149.139,250.861L150,250L149.139,249.139L149.139,224.37C149.139,224.37 114.5,216.47 114.5,211.825C114.5,204.624 149.139,190.222 149.139,190.222C149.139,190.222 88.329,181.412 88.329,174.19C88.329,163.77 149.139,150.861 149.139,150.861L150,150L149.139,149.139C149.139,149.139 74.042,115.226 74.042,107.036C74.042,99.033 149.139,100 149.139,100L300,100L300.381,100.001C301.489,99.976 302.601,99.963 303.715,99.963C376.521,99.963 435.63,153.277 435.63,218.944C435.63,259.02 413.615,294.495 379.907,316.059ZM303.26,163.181C286.311,166.49 250.829,161.805 241.874,175.167C232.928,188.516 250.5,219.904 253.785,236.942C260.359,271.037 293.203,293.346 327.083,286.731C360.963,280.115 383.132,247.064 376.558,212.969C369.984,178.874 337.141,156.565 303.26,163.181Z" style="fill:rgb(255,140,0);"/>
+                  </g>
+                  <g transform="matrix(1.836015,0,0,1.883934,-269.487679,-201.969449)">
+                      <g transform="matrix(50,0,0,50,406.717634,255.831355)">
+                      </g>
+                      <text x="208.134px" y="255.831px" style="font-family:'LeelawadeeUI-Bold', 'Leelawadee UI', sans-serif;font-weight:700;font-size:50px;fill:white;">EFFERAL</text>
+                  </g>
+              </g>
+          </svg>
+          <svg class="svg1" viewBox="0 0 475 89" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+              <g transform="matrix(1,0,0,1,-1.06121,-191.739806)">
+                  <g transform="matrix(0.296026,0,0,0.294165,-20.857216,162.334106)">
+                      <path d="M379.907,316.059L435.63,400L290.033,400L250,350L250,400L149.139,400L149.139,350.861L150,350L149.139,349.139L149.139,250.861L150,250L149.139,249.139L149.139,224.37C149.139,224.37 114.5,216.47 114.5,211.825C114.5,204.624 149.139,190.222 149.139,190.222C149.139,190.222 88.329,181.412 88.329,174.19C88.329,163.77 149.139,150.861 149.139,150.861L150,150L149.139,149.139C149.139,149.139 74.042,115.226 74.042,107.036C74.042,99.033 149.139,100 149.139,100L300,100L300.381,100.001C301.489,99.976 302.601,99.963 303.715,99.963C376.521,99.963 435.63,153.277 435.63,218.944C435.63,259.02 413.615,294.495 379.907,316.059ZM303.26,163.181C286.311,166.49 250.829,161.805 241.874,175.167C232.928,188.516 250.5,219.904 253.785,236.942C260.359,271.037 293.203,293.346 327.083,286.731C360.963,280.115 383.132,247.064 376.558,212.969C369.984,178.874 337.141,156.565 303.26,163.181Z" style="fill:rgb(255, 255, 255);"/>
+                  </g>
+                  <g transform="matrix(1.836015,0,0,1.883934,-269.487679,-201.969449)">
+                      <g transform="matrix(50,0,0,50,406.717634,255.831355)">
+                      </g>
+                      <text x="208.134px" y="255.831px" style="font-family:'LeelawadeeUI-Bold', 'Leelawadee UI', sans-serif;font-weight:700;font-size:50px;fill:white;">EFFERAL</text>
+                  </g>
+              </g>
+          </svg>
+          <div class="access">
+              <span class="fa fa-user-circle profile" title="Profile" onclick="goToDashboard()"></span>
+              <span onclick="window.location.href='adminlogin.html'" class="profile-admin"><i class="fa fa-user"></i>Admin</span>            
+              <a class="uploadbtn" onclick="window.location.href='upload.html'">+ Post</a>
+              <!--<button onclick="window.location.href='adminlogin.html'" class="admin-btn">Admin Login</button>-->
+          </div>
+      </div>
+  </div>
+
+
+  <h2 class="">🔥 Flash Sale Bidding</h2>
+  <div id="flashContainer"></div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+
+  <script>
+  // TODO: Replace with your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyBnzsTMXV6o8fNhosp_7U6o3xFEQbsQIl8",
+    authDomain: "referral-backend-3a9c3.firebaseapp.com",
+    projectId: "referral-backend-3a9c3",
+    storageBucket: "referral-backend-3a9c3.appspot.com",
+    messagingSenderId: "394999402090",
+    appId: "1:394999402090:web:5b77df3f12f00f5ab58413"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // Real-time listener for flash sale products
+  db.collection("flash_sale").orderBy("timestamp", "desc")
+    .onSnapshot(snapshot => {
+      const container = document.getElementById("flashContainer");
+      container.innerHTML = "";
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const div = document.createElement("div");
+        div.className = "flash-card";
+
+        div.innerHTML = `
+          <img src="${data.imageUrl}">
+          <h3>${data.name}</h3>
+          <p>${data.description}</p>
+          <p>Old Price: ₦${data.oldPrice}</p>
+          <p>Current Bid: ₦<span id="bid-${doc.id}">${data.startPrice}</span></p>
+          <p>Current Highest Bidder: <span id="bidder-${doc.id}">${data.highestBidder || "None"}</span></p>
+          <p>Time Left: <span id="timer-${doc.id}"></span></p>
+          <input type="number" id="input-${doc.id}" placeholder="Your Bid">
+          <button onclick="placeBid('${doc.id}', ${data.startPrice})">Place Bid</button>
+        `;
+
+        container.appendChild(div);
+
+        // Start countdown
+        if (data.endsAt) {
+          const endTime = data.endsAt.toDate().getTime();
+          startCountdown(endTime, doc.id);
+        }
+      });
+    });
+
+  // Place a bid
+  window.placeBid = async (id, currentBid) => {
+    const input = document.getElementById(`input-${id}`);
+    const bid = Number(input.value);
+    const user = prompt("Enter your name for this bid:");
+
+    if (!bid || bid <= currentBid) {
+      alert("Your bid must be higher than the current bid!");
+      return;
+    }
+    if (!user) {
+      alert("Please enter your name to bid!");
+      return;
+    }
+
+    await db.collection("flash_sale").doc(id).update({
+      startPrice: bid,
+      highestBidder: user
+    });
+
+    alert(`Bid placed successfully! Current highest bidder: ${user}`);
+  };
+
+  // Countdown timer function
+  function startCountdown(endTime, id) {
+    const timerEl = document.getElementById(`timer-${id}`);
+
+    const interval = setInterval(async () => {
+      const now = new Date().getTime();
+      const distance = endTime - now;
+
+      const doc = await db.collection("flash_sale").doc(id).get();
+      const data = doc.data();
+
+      // Update highest bidder live
+      const bidderEl = document.getElementById(`bidder-${id}`);
+      if (bidderEl) bidderEl.innerText = data.highestBidder || "None";
+
+      if (distance <= 0) {
+        clearInterval(interval);
+        timerEl.innerText = "Sale Ended";
+
+        const input = document.getElementById(`input-${id}`);
+        const button = document.querySelector(`button[onclick*='${id}']`);
+
+        if (input) input.disabled = true;
+        if (button) button.disabled = true;
+
+        // Highlight winner
+        if (data.highestBidder) {
+          const winnerDiv = document.createElement("div");
+          winnerDiv.className = "winner";
+          winnerDiv.innerText = `Winner: ${data.highestBidder}`;
+          timerEl.parentNode.appendChild(winnerDiv);
+        } else {
+          const winnerDiv = document.createElement("div");
+          winnerDiv.className = "winner";
+          winnerDiv.innerText = "No bids placed";
+          timerEl.parentNode.appendChild(winnerDiv);
+        }
+
+        return;
+      }
+
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      timerEl.innerText = `${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  }
+  </script>
+
+</body>
+</html>

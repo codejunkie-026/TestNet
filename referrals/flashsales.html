@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="Nyerhovwo.T" content="Referral™, fullstack">
+    <meta name="generator" content="htvp.0.84.0">
+    <title>Referral - Flash Sale</title>
+    <!--icon-->
+    <link rel="icon" href="./assets/vendors/favicon_io/favicon-32x32.png">
+    <!--main-->
+    <link rel="stylesheet" href="./assets/css/index.cs">
+    <!--vendor-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <style>
+    :root {
+        --bs-light: white;
+        --bs-light-muted: rgba(255, 255, 255, 0.801);
+        --bs-dark: black;
+        --bs-danger: red;
+        --bs-success: green;
+        --accent-main: #fd7e14;
+        --accent-main-1: #5f2f08e1;
+        --accent-main-2: #fc821ee1;
+        --accent-hover-light: #ffb77c;
+        --accent-hover-dark: #d36104;
+    }
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .post {
+      background: #f7f7f7;
+      padding: 20px;
+      border-radius: 10px;
+      width: 450px;
+      margin: auto;
+    }
+    .post-head{
+      position: relative;
+      top: 1.5rem;
+    }
+    @media (max-width: 500Px){
+      .post{
+        width: 100%;
+        margin: 2px;
+      }
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+    }
+    button {
+      padding: 10px;
+      width: 100%;
+      background: #fd7e14;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+
+    /*==========
+    navbar
+    ==================*/
+    .navbar{
+        position: fixed;
+        z-index: 99;
+        height: 3rem;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        color: var(--bs-light);
+        background: var(--accent-main);
+    }
+    .navbar.sticky{
+        position: fixed;
+        z-index: 100;
+        height: 3rem;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        background: #7c3f0ce1;
+        color: white;
+    }
+    .navbar-min{
+        width: 100%;
+        margin: 0px 11px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .navbar .svg{
+        visibility: hidden;
+        height: 20px;
+        width: 150px;
+    }
+    .navbar .svg1{
+        position: absolute;
+        top: 2px;
+        left: 25px;
+        height: 40px;
+        width: 150px;
+    }
+    .navbar .access{
+        position: absolute;
+        top: 10px;
+        right: 25px;
+    }
+    .navbar .profile{
+        font-size: 1.4rem;
+    }
+    .navbar .profile-admin{
+        border: 2px solid var(--bs-light);
+        padding: 5px 5px;
+        border-radius: 5px;
+    }
+    .navbar .uploadbtn{
+        padding: 5px 5px;
+        border: 2px solid var(--bs-light);
+        border-radius: 5px;
+        color: var(--bs-light);
+        text-decoration: none;
+    }
+
+    @media (max-width: 500px){
+        .navbar{
+            height: 3.5rem;
+        }
+        .navbar-min{
+            margin: 5px 11px;
+            position: relative;
+        }
+        .navbar .svg1{
+            position: absolute;
+            height: 55px;
+            width: 120px;
+            top: -20px;
+            left: 5px;
+        }
+        .navbar .access{
+            position: absolute;
+            top: -3px;
+            right: 5px;
+        }
+        .navbar .profile{
+            height: 70px;
+        }
+        .navbar .profile-admin{
+            background: var(--accent-main);
+            border: 2px solid var(--bs-light);
+            padding: 5px 5px;
+            border-radius: 5px;
+        }
+        .navbar .uploadbtn{
+            padding: 5px 5px;
+            border: 2px solid var(--bs-light);
+            border-radius: 5px;
+            color: var(--bs-light);
+            text-decoration: none;
+        }
+    }
+
+
+    /*======
+    footer
+    ==============*/
+    .foot{
+        background: var(--accent-main);
+    }
+    .footer-head{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .footer-head .svg1{
+        height: 65px;
+        width: 260px;
+        margin-bottom: 20px;
+    }
+    .foot li a{
+        color: var(--bs-light-muted);
+    }
+    .newsletter-form input{
+        border: none;
+        padding: 5px;
+        border-radius: 1px;
+    }
+    .newsletter-form .submit{
+        padding: 5px;
+        background: var(--accent-main);
+        border: 1px solid var(--bs-light);
+        color: var(--bs-light);
+    }
+    .newsletter-form .submit:hover{
+        background: var(--accent-hover-dark);
+        border: 1px solid var(--bs-light);
+        color: var(--bs-light);
+    }
+
+    .footer-section{
+        background: #fa9613;
+        margin-bottom: -15px;
+        padding: 20px;
+    }
+    .footer-brand{
+        text-transform: uppercase;
+        text-align: center;
+        color: white;
+    }
+
+    .subscription-form h3{
+        text-align: center;
+        text-transform: capitalize;
+        color: white;
+    }
+    .subscription-form .subscription-area{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+    }
+    .subscription-area input{
+        padding: 6px;
+        border: 1px solid white;
+        text-align: center;
+        border-radius: 5px;
+    }
+    .subscription-area button{
+        padding: 7px;
+        background: white;
+        border: 1px solid white;
+        border-radius: 15px;
+        color: #fa9613;
+    }
+
+    .footer-writeup{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+    .footer-writeup .footer-logo{
+        outline: none;
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+    }
+    .footer-writeup p{
+        text-align: center;
+        max-width: 50rem;
+        color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!--navbar-->
+  <div class="navbar">
+      <div class="navbar-min">
+          <svg class="svg" viewBox="0 0 475 89" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+              <g transform="matrix(1,0,0,1,-1.06121,-191.739806)">
+                  <g transform="matrix(0.296026,0,0,0.294165,-20.857216,162.334106)">
+                      <path d="M379.907,316.059L435.63,400L290.033,400L250,350L250,400L149.139,400L149.139,350.861L150,350L149.139,349.139L149.139,250.861L150,250L149.139,249.139L149.139,224.37C149.139,224.37 114.5,216.47 114.5,211.825C114.5,204.624 149.139,190.222 149.139,190.222C149.139,190.222 88.329,181.412 88.329,174.19C88.329,163.77 149.139,150.861 149.139,150.861L150,150L149.139,149.139C149.139,149.139 74.042,115.226 74.042,107.036C74.042,99.033 149.139,100 149.139,100L300,100L300.381,100.001C301.489,99.976 302.601,99.963 303.715,99.963C376.521,99.963 435.63,153.277 435.63,218.944C435.63,259.02 413.615,294.495 379.907,316.059ZM303.26,163.181C286.311,166.49 250.829,161.805 241.874,175.167C232.928,188.516 250.5,219.904 253.785,236.942C260.359,271.037 293.203,293.346 327.083,286.731C360.963,280.115 383.132,247.064 376.558,212.969C369.984,178.874 337.141,156.565 303.26,163.181Z" style="fill:rgb(255,140,0);"/>
+                  </g>
+                  <g transform="matrix(1.836015,0,0,1.883934,-269.487679,-201.969449)">
+                      <g transform="matrix(50,0,0,50,406.717634,255.831355)">
+                      </g>
+                      <text x="208.134px" y="255.831px" style="font-family:'LeelawadeeUI-Bold', 'Leelawadee UI', sans-serif;font-weight:700;font-size:50px;fill:white;">EFFERAL</text>
+                  </g>
+              </g>
+          </svg>
+          <svg class="svg1" viewBox="0 0 475 89" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+              <g transform="matrix(1,0,0,1,-1.06121,-191.739806)">
+                  <g transform="matrix(0.296026,0,0,0.294165,-20.857216,162.334106)">
+                      <path d="M379.907,316.059L435.63,400L290.033,400L250,350L250,400L149.139,400L149.139,350.861L150,350L149.139,349.139L149.139,250.861L150,250L149.139,249.139L149.139,224.37C149.139,224.37 114.5,216.47 114.5,211.825C114.5,204.624 149.139,190.222 149.139,190.222C149.139,190.222 88.329,181.412 88.329,174.19C88.329,163.77 149.139,150.861 149.139,150.861L150,150L149.139,149.139C149.139,149.139 74.042,115.226 74.042,107.036C74.042,99.033 149.139,100 149.139,100L300,100L300.381,100.001C301.489,99.976 302.601,99.963 303.715,99.963C376.521,99.963 435.63,153.277 435.63,218.944C435.63,259.02 413.615,294.495 379.907,316.059ZM303.26,163.181C286.311,166.49 250.829,161.805 241.874,175.167C232.928,188.516 250.5,219.904 253.785,236.942C260.359,271.037 293.203,293.346 327.083,286.731C360.963,280.115 383.132,247.064 376.558,212.969C369.984,178.874 337.141,156.565 303.26,163.181Z" style="fill:rgb(255, 255, 255);"/>
+                  </g>
+                  <g transform="matrix(1.836015,0,0,1.883934,-269.487679,-201.969449)">
+                      <g transform="matrix(50,0,0,50,406.717634,255.831355)">
+                      </g>
+                      <text x="208.134px" y="255.831px" style="font-family:'LeelawadeeUI-Bold', 'Leelawadee UI', sans-serif;font-weight:700;font-size:50px;fill:white;">EFFERAL</text>
+                  </g>
+              </g>
+          </svg>
+          <div class="access">
+              <span class="fa fa-user-circle profile" title="Profile" onclick="goToDashboard()"></span>
+              <span onclick="window.location.href='adminlogin.html'" class="profile-admin"><i class="fa fa-user"></i>Admin</span>            
+              <a class="uploadbtn" onclick="window.location.href='upload.html'">+ Post</a>
+              <!--<button onclick="window.location.href='adminlogin.html'" class="admin-btn">Admin Login</button>-->
+          </div>
+      </div>
+  </div>
+
+
+
+  <h2 class="pt-5 post-head text-center mb-5">Post Flash Sale Product</h2>
+
+  <form class="post" id="flashSaleForm">
+    <input type="text" id="name" placeholder="Product Name" required>
+    <textarea id="description" placeholder="Description" required></textarea>
+    <input type="number" id="oldPrice" placeholder="Old Price" required>
+    <input type="number" id="startPrice" placeholder="Starting Bid Price" required>
+    <input type="text" id="seller" placeholder="Seller Name" required>
+    <input type="file" id="image" accept="image/*" required>
+    <button type="submit">Post Product</button>
+  </form>
+
+  <footer class="mt-5 py-5 p-3 foot">
+      <div class="footer-head">
+          <svg class="svg1" viewBox="0 0 475 89" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+              <g transform="matrix(1,0,0,1,-1.06121,-191.739806)">
+                  <g transform="matrix(0.296026,0,0,0.294165,-20.857216,162.334106)">
+                      <path d="M379.907,316.059L435.63,400L290.033,400L250,350L250,400L149.139,400L149.139,350.861L150,350L149.139,349.139L149.139,250.861L150,250L149.139,249.139L149.139,224.37C149.139,224.37 114.5,216.47 114.5,211.825C114.5,204.624 149.139,190.222 149.139,190.222C149.139,190.222 88.329,181.412 88.329,174.19C88.329,163.77 149.139,150.861 149.139,150.861L150,150L149.139,149.139C149.139,149.139 74.042,115.226 74.042,107.036C74.042,99.033 149.139,100 149.139,100L300,100L300.381,100.001C301.489,99.976 302.601,99.963 303.715,99.963C376.521,99.963 435.63,153.277 435.63,218.944C435.63,259.02 413.615,294.495 379.907,316.059ZM303.26,163.181C286.311,166.49 250.829,161.805 241.874,175.167C232.928,188.516 250.5,219.904 253.785,236.942C260.359,271.037 293.203,293.346 327.083,286.731C360.963,280.115 383.132,247.064 376.558,212.969C369.984,178.874 337.141,156.565 303.26,163.181Z" style="fill:rgb(255, 255, 255);"/>
+                  </g>
+                  <g transform="matrix(1.836015,0,0,1.883934,-269.487679,-201.969449)">
+                      <g transform="matrix(50,0,0,50,406.717634,255.831355)">
+                      </g>
+                      <text x="208.134px" y="255.831px" style="font-family:'LeelawadeeUI-Bold', 'Leelawadee UI', sans-serif;font-weight:700;font-size:50px;fill:white;">EFFERAL</text>
+                  </g>
+              </g>
+          </svg>
+      </div>
+      <div class="container">
+          <div class="row gy-4">
+              <ul class="col-lg-3 col-md-4">
+                  <h4 class="fw-bolder list-unstyled text-capitalize">useful links</h4>
+                  <li class="list-unstyled"><a href="index.html">Home</a></li>
+                  <li class="list-unstyled"><a href="#">About Us</a></li>
+                  <li class="list-unstyled"><a href="#">Services</a></li>
+                  <li class="list-unstyled"><a href="#">Terms Of Service</a></li>
+                  <li class="list-unstyled"><a href="#">Privacy Policy</a></li>
+              </ul>
+              <ul class="col-lg-3 col-md-4">
+                  <h4 class="fw-bolder list-unstyled text-capitalize">services</h4>
+                  <li class="list-unstyled"><a href="">Car Sale</a></li>
+                  <li class="list-unstyled"><a href="">Land Auction</a></li>
+                  <li class="list-unstyled"><a href="">House Purchase</a></li>
+                  <li class="list-unstyled"><a href="">House Rent Off</a></li>
+                  <li class="list-unstyled"><a href="">Courier Services</a></li>
+              </ul>
+              <div class="col-lg-6 col-md-10">
+                  <h4>Our Newsletter</h4>
+                  <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+                  <form action="forms/newsletter.php" method="post" class="php-email-form">
+                      <div class="newsletter-form"><input type="email" name="email"><input class="submit" type="submit" value="Subscribe"></div>
+                      <!--<div class="loading">Loading</div>
+                      <div class="error-message"></div>
+                      <div class="sent-message">Your subscription request has been sent. Thank you!</div>-->
+                  </form>
+              </div>
+          </div>
+      </div>
+  </footer>
+
+  <script src="firebase.js"></script>
+  <script src="flash-sale.js"></script>
+
+</body>
+</html>

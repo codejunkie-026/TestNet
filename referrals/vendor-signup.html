@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Dashboard | HomeSellerHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    
+    <style>
+        :root {
+            --primary-green: #2ecc71;
+            --primary-orange: #ff7f50;
+            --green-light: #d5f4e6;
+            --green-dark: #27ae60;
+            --orange-light: #ffebcc;
+            --orange-dark: #e67e22;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --gray-dark: #495057;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8fff8;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        /* Dashboard Layout */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: linear-gradient(180deg, var(--primary-green), var(--green-dark));
+            color: white;
+            padding: 2rem 1.5rem;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .vendor-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .vendor-brand i {
+            font-size: 2.5rem;
+            background: rgba(255,255,255,0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vendor-info h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .vendor-info p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Navigation */
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 1rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255,255,255,0.15);
+            transform: translateX(5px);
+        }
+
+        .nav-item i {
+            font-size: 1.2rem;
+            width: 25px;
+        }
+
+        /* Privacy Badge */
+        .privacy-status {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border: 2px dashed rgba(255,255,255,0.3);
+        }
+
+        .privacy-status h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-status p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        /* Header */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--gray-medium);
+        }
+
+        .welcome-message h1 {
+            font-size: 2.2rem;
+            color: var(--gray-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-message p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .action-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+            color: white;
+        }
+
+        .btn-settings {
+            background: var(--gray-medium);
+            color: var(--gray-dark);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-card:nth-child(1) { border-top: 5px solid var(--primary-green); }
+        .stat-card:nth-child(2) { border-top: 5px solid var(--primary-orange); }
+        .stat-card:nth-child(3) { border-top: 5px solid #3498db; }
+        .stat-card:nth-child(4) { border-top: 5px solid #9b59b6; }
+
+        .stat-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem;
+            opacity: 0.2;
+            color: inherit;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--gray-dark);
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .stat-trend {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .trend-up { color: var(--primary-green); }
+        .trend-down { color: #e74c3c; }
+
+        /* Quick Actions */
+        .quick-actions {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .quick-actions h2 {
+            color: var(--gray-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .action-card {
+            background: var(--gray-light);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .action-card:hover {
+            background: white;
+            border-color: var(--primary-green);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .action-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+        }
+
+        .action-card h3 {
+            font-size: 1rem;
+            color: var(--gray-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .action-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Recent Activity */
+        .activity-list {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .activity-list h2 {
+            color: var(--gray-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--gray-medium);
+            transition: var(--transition);
+        }
+
+        .activity-item:hover {
+            background: var(--gray-light);
+            border-radius: 10px;
+            transform: translateX(5px);
+        }
+
+        .activity-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--green-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 1.2rem;
+        }
+
+        .activity-content h4 {
+            color: var(--gray-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .activity-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .activity-time {
+            margin-left: auto;
+            color: #999;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            margin-top: 2rem;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                height: auto;
+                position: relative;
+            }
+            
+            .nav-menu {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .nav-item {
+                flex: 1;
+                min-width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="vendor-brand">
+                <i class="fas fa-store"></i>
+                <div class="vendor-info">
+                    <h2 id="businessName">Loading...</h2>
+                    <p><i class="fas fa-shield-alt"></i> <span id="privacyLevel">Privacy Protected</span></p>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('products')">
+                    <i class="fas fa-box-open"></i>
+                    <span>Products</span>
+                    <span class="badge" id="productCount">0</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('orders')">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Orders</span>
+                    <span class="badge" id="orderCount">0</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('messages')">
+                    <i class="fas fa-comments"></i>
+                    <span>Messages</span>
+                    <span class="badge" id="messageCount">0</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('analytics')">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('settings')">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="privacy-status">
+                <h3><i class="fas fa-user-shield"></i> Privacy Status</h3>
+                <p id="privacyStatusText">Your home address is hidden from buyers</p>
+            </div>
+
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <div class="welcome-message">
+                    <h1>Welcome back, <span id="vendorName">Vendor</span>!</h1>
+                    <p>Here's what's happening with your home-based store today</p>
+                </div>
+                <div class="header-actions">
+                    <button class="action-btn btn-add" onclick="addProduct()">
+                        <i class="fas fa-plus"></i>
+                        Add Product
+                    </button>
+                    <button class="action-btn btn-settings" onclick="showSection('settings')">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-value" id="totalRevenue">$0</div>
+                    <div class="stat-label">Total Revenue</div>
+                    <div class="stat-trend trend-up" id="revenueTrend">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>0% this month</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="stat-value" id="totalOrders">0</div>
+                    <div class="stat-label">Total Orders</div>
+                    <div class="stat-trend trend-up" id="ordersTrend">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>0% this month</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-star"></i></div>
+                    <div class="stat-value" id="avgRating">0.0</div>
+                    <div class="stat-label">Average Rating</div>
+                    <div class="stat-trend trend-up" id="ratingTrend">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>0 reviews</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-eye"></i></div>
+                    <div class="stat-value" id="totalViews">0</div>
+                    <div class="stat-label">Profile Views</div>
+                    <div class="stat-trend trend-up" id="viewsTrend">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>0% this week</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                <div class="actions-grid">
+                    <div class="action-card" onclick="addProduct()">
+                        <i class="fas fa-plus-circle"></i>
+                        <h3>Add Product</h3>
+                        <p>List a new item for sale</p>
+                    </div>
+                    <div class="action-card" onclick="showSection('products')">
+                        <i class="fas fa-edit"></i>
+                        <h3>Manage Products</h3>
+                        <p>Edit existing listings</p>
+                    </div>
+                    <div class="action-card" onclick="showSection('orders')">
+                        <i class="fas fa-truck"></i>
+                        <h3>Process Orders</h3>
+                        <p>Ship pending orders</p>
+                    </div>
+                    <div class="action-card" onclick="updatePrivacySettings()">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Privacy Settings</h3>
+                        <p>Adjust visibility</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-list">
+                <h2><i class="fas fa-history"></i> Recent Activity</h2>
+                <div id="activityList">
+                    <!-- Activities will be loaded here -->
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Welcome to HomeSellerHub!</h4>
+                            <p>Your vendor account has been created successfully</p>
+                        </div>
+                        <div class="activity-time">Just now</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBnzsTMXV6o8fNhosp_7U6o3xFEQbsQIl8",
+            authDomain: "referral-backend-3a9c3.firebaseapp.com",
+            projectId: "referral-backend-3a9c3",
+            storageBucket: "referral-backend-3a9c3.appspot.com",
+            messagingSenderId: "394999402090",
+            appId: "1:394999402090:web:5b77df3f12f00f5ab58413"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        // Global Variables
+        let currentVendorData = null;
+        let vendorId = null;
+
+        // Check authentication on page load
+        auth.onAuthStateChanged(async (user) => {
+            if (!user) {
+                // Not logged in, redirect to login
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // User is logged in, load vendor data
+            await loadVendorData(user.uid);
+            await loadVendorStats();
+            await loadRecentActivity();
+        });
+
+        // Load vendor data from Firestore
+        async function loadVendorData(userId) {
+            try {
+                // Find vendor by userId
+                const vendorsRef = db.collection('vendors');
+                const snapshot = await vendorsRef.where('userId', '==', userId).get();
+                
+                if (snapshot.empty) {
+                    // No vendor profile found
+                    alert('No vendor profile found. Please create one first.');
+                    window.location.href = 'vendor-signup.html';
+                    return;
+                }
+
+                // Get vendor data
+                const doc = snapshot.docs[0];
+                vendorId = doc.id;
+                currentVendorData = doc.data();
+                
+                // Update UI with vendor data
+                updateVendorUI();
+                
+                // Set up real-time listener for vendor updates
+                db.collection('vendors').doc(vendorId)
+                    .onSnapshot((doc) => {
+                        currentVendorData = doc.data();
+                        updateVendorUI();
+                    });
+
+            } catch (error) {
+                console.error('Error loading vendor data:', error);
+                alert('Error loading vendor data. Please try again.');
+            }
+        }
+
+        // Update UI with vendor data
+        function updateVendorUI() {
+            if (!currentVendorData) return;
+
+            // Update business info
+            document.getElementById('businessName').textContent = 
+                currentVendorData.businessName || 'My Store';
+            document.getElementById('vendorName').textContent = 
+                currentVendorData.fullName || 'Vendor';
+
+            // Update privacy status
+            const privacyText = getPrivacyText(currentVendorData.privacySetting);
+            document.getElementById('privacyLevel').textContent = privacyText;
+            document.getElementById('privacyStatusText').textContent = 
+                `Your location is ${privacyText.toLowerCase()}. Home address hidden.`;
+        }
+
+        function getPrivacyText(setting) {
+            switch(setting) {
+                case 'cityOnly': return 'City Only';
+                case 'regionOnly': return 'Region Only';
+                case 'noLocation': return 'Hidden';
+                default: return 'Protected';
+            }
+        }
+
+        // Load vendor statistics
+        async function loadVendorStats() {
+            try {
+                if (!vendorId) return;
+
+                // Get products count
+                const productsSnapshot = await db.collection('products')
+                    .where('vendorId', '==', vendorId)
+                    .get();
+                document.getElementById('productCount').textContent = productsSnapshot.size;
+
+                // Get orders count
+                const ordersSnapshot = await db.collection('orders')
+                    .where('vendorId', '==', vendorId)
+                    .get();
+                document.getElementById('orderCount').textContent = ordersSnapshot.size;
+
+                // Calculate total revenue
+                let totalRevenue = 0;
+                ordersSnapshot.forEach(doc => {
+                    const order = doc.data();
+                    totalRevenue += order.totalAmount || 0;
+                });
+                document.getElementById('totalRevenue').textContent = `$${totalRevenue.toFixed(2)}`;
+                document.getElementById('totalOrders').textContent = ordersSnapshot.size;
+
+                // Get average rating
+                const reviewsSnapshot = await db.collection('reviews')
+                    .where('vendorId', '==', vendorId)
+                    .get();
+                
+                let totalRating = 0;
+                reviewsSnapshot.forEach(doc => {
+                    totalRating += doc.data().rating || 0;
+                });
+                
+                const avgRating = reviewsSnapshot.size > 0 ? 
+                    (totalRating / reviewsSnapshot.size).toFixed(1) : '0.0';
+                document.getElementById('avgRating').textContent = avgRating;
+
+                // Update trends
+                const thisMonth = new Date();
+                thisMonth.setDate(1);
+                
+                const lastMonth = new Date();
+                lastMonth.setMonth(lastMonth.getMonth() - 1);
+                lastMonth.setDate(1);
+
+                // Get this month's orders
+                const thisMonthOrders = await db.collection('orders')
+                    .where('vendorId', '==', vendorId)
+                    .where('createdAt', '>=', thisMonth)
+                    .get();
+                
+                // Get last month's orders
+                const lastMonthOrders = await db.collection('orders')
+                    .where('vendorId', '==', vendorId)
+                    .where('createdAt', '>=', lastMonth)
+                    .where('createdAt', '<', thisMonth)
+                    .get();
+
+                const thisMonthCount = thisMonthOrders.size;
+                const lastMonthCount = lastMonthOrders.size;
+                
+                let ordersTrend = 0;
+                if (lastMonthCount > 0) {
+                    ordersTrend = ((thisMonthCount - lastMonthCount) / lastMonthCount * 100).toFixed(1);
+                } else if (thisMonthCount > 0) {
+                    ordersTrend = 100;
+                }
+                
+                const trendElement = document.getElementById('ordersTrend');
+                trendElement.innerHTML = `
+                    <i class="fas fa-arrow-${ordersTrend >= 0 ? 'up' : 'down'}"></i>
+                    <span>${Math.abs(ordersTrend)}% this month</span>
+                `;
+                trendElement.className = `stat-trend ${ordersTrend >= 0 ? 'trend-up' : 'trend-down'}`;
+
+            } catch (error) {
+                console.error('Error loading vendor stats:', error);
+            }
+        }
+
+        // Load recent activity
+        async function loadRecentActivity() {
+            try {
+                if (!vendorId) return;
+
+                // Get recent orders
+                const ordersSnapshot = await db.collection('orders')
+                    .where('vendorId', '==', vendorId)
+                    .orderBy('createdAt', 'desc')
+                    .limit(5)
+                    .get();
+
+                const activityList = document.getElementById('activityList');
+                activityList.innerHTML = '';
+
+                if (ordersSnapshot.empty) {
+                    activityList.innerHTML = `
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>No recent activity</h4>
+                                <p>Start by adding your first product!</p>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                ordersSnapshot.forEach(doc => {
+                    const order = doc.data();
+                    const timeAgo = getTimeAgo(order.createdAt?.toDate());
+                    
+                    const activityItem = document.createElement('div');
+                    activityItem.className = 'activity-item';
+                    activityItem.innerHTML = `
+                        <div class="activity-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>New Order #${order.orderNumber || 'N/A'}</h4>
+                            <p>${order.items?.length || 0} items - $${order.totalAmount?.toFixed(2) || '0.00'}</p>
+                        </div>
+                        <div class="activity-time">${timeAgo}</div>
+                    `;
+                    
+                    activityList.appendChild(activityItem);
+                });
+
+            } catch (error) {
+                console.error('Error loading recent activity:', error);
+            }
+        }
+
+        // Helper function to get time ago
+        function getTimeAgo(date) {
+            if (!date) return 'Recently';
+            
+            const seconds = Math.floor((new Date() - date) / 1000);
+            
+            let interval = Math.floor(seconds / 31536000);
+            if (interval >= 1) return interval + "y ago";
+            
+            interval = Math.floor(seconds / 2592000);
+            if (interval >= 1) return interval + "mo ago";
+            
+            interval = Math.floor(seconds / 86400);
+            if (interval >= 1) return interval + "d ago";
+            
+            interval = Math.floor(seconds / 3600);
+            if (interval >= 1) return interval + "h ago";
+            
+            interval = Math.floor(seconds / 60);
+            if (interval >= 1) return interval + "m ago";
+            
+            return "Just now";
+        }
+
+        // Navigation functions
+        function showSection(section) {
+            alert(`Navigating to ${section} section. In a full implementation, this would load the corresponding content.`);
+            // In full implementation, you would load different content based on section
+        }
+
+        function addProduct() {
+            window.location.href = 'vendor-products.html';
+        }
+
+        function updatePrivacySettings() {
+            window.location.href = 'vendor-signup.html?edit=true';
+        }
+
+        // Logout function
+        function logout() {
+            auth.signOut().then(() => {
+                window.location.href = 'index.html';
+            }).catch((error) => {
+                console.error('Error signing out:', error);
+                alert('Error signing out. Please try again.');
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add badge styles
+            const style = document.createElement('style');
+            style.textContent = `
+                .badge {
+                    background: rgba(255,255,255,0.2);
+                    color: white;
+                    padding: 0.2rem 0.6rem;
+                    border-radius: 10px;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    margin-left: auto;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+
+        // Make functions globally available
+        window.showSection = showSection;
+        window.addProduct = addProduct;
+        window.updatePrivacySettings = updatePrivacySettings;
+        window.logout = logout;
+    </script>
+</body>
+</html>
