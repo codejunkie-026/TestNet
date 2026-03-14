@@ -1,0 +1,99 @@
+:root {
+      --bs-light: white;
+      --bs-dark: black;
+      --accent-main: #fd7e14;
+      --accent-hover-light: #ffb77c;
+      --accent-hover-dark: #d36104;
+}
+
+.log {
+      font-family: Arial, sans-serif;
+      background: var(--bs-light);
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.405), rgba(0, 0, 0, 0.589)), url(../img/access/bailey-anselme-Bkp3gLygyeA-unsplash.jpg);
+      background-position: center;
+      background-size: cover;
+}
+.reg {
+      font-family: Arial, sans-serif;
+      background: var(--bs-light);
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.478), rgba(0, 0, 0, 0.589)), url(../img/access/etienne-beauregard-riverin-B0aCvAVSX8E-unsplash.jpg);
+      background-position: center;
+      background-size: cover;
+}
+
+.container {
+      background: rgba(0, 0, 0, 0.397);
+      border-radius: 10px;
+      padding: 50px 10px;
+      max-width: 30em !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+
+.container p {
+      text-align: center;
+      color: var(--bs-light);
+}
+.container a {
+      color: linear-gradient(135deg, #001e41, #003e85);
+      text-decoration: none;
+}
+.container a:hover {
+      color: linear-gradient(135deg, #0059be, #003e85);
+      text-decoration: underline;
+}
+.container h2 {
+      text-align: center;
+      color: var(--bs-light);
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+}
+
+.container input[type="text"], [type="email"], [type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      text-align: center;
+}
+
+.container button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #001e41, #003e85);
+      border: none;
+      color: var(--bs-light);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+}
+.container button:hover{
+    background: linear-gradient(135deg, #003e85, #001e41);
+    color: var(--bs-light);
+    animation: login 2s ease-in-out;
+}
+@keyframes login{
+    10%{
+        transform: translateY(2px);
+    }
+    15%{
+        transform: translateY(4px);
+    }
+    22%{
+        transform: translateY(-2px);
+    }
+    25%{
+        transform: scaleY(-4px);
+    }
+    27%{
+        transform: scaleY(-6px);
+    }
+    30%{
+        transform: translateY(0px);
+    }
+}

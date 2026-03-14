@@ -1,0 +1,230 @@
+:root {
+      --bs-light: white;
+      --bs-light-muted: rgba(255, 255, 255, 0.801);
+      --bs-dark: black;
+      --bs-danger: red;
+      --bs-success: green;
+      --accent-main: #001e41;
+      --accent-main-1: #5f2f08e1;
+      --accent-main-2: #1e6cfce1;
+      --accent-hover-light: #ffb77c;
+      --accent-hover-dark: #d36104;
+}
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+body {
+    margin: 0;
+    background: #f4f6f8;
+    user-select: none;
+}
+
+.move {
+    padding-top: 5rem;
+}
+
+/*==========
+navbar
+==================*/
+.navbar{
+    position: fixed;
+    height: 3.9rem;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    color: var(--bs-light);
+    background: var(--accent-main);
+}
+.navbar.sticky{
+    position: fixed;
+    z-index: 100;
+    height: 3rem;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: #7c3f0ce1;
+    color: white;
+}
+.navbar-min{
+    width: 100%;
+    margin: 0px 11px;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar .svg{
+    visibility: hidden;
+    height: 20px;
+    width: 150px;
+}
+.navbar .svg1{
+    position: absolute;
+    top: -120px;
+    left: -50px;
+    height: 300px;
+    width: 350px;
+}
+.navbar .access{
+    position: absolute;
+    top: 19px;
+    right: 25px;
+}
+.navbar .profile{
+    font-size: 1.4rem;
+}
+.navbar .profile-admin{
+    border: 2px solid var(--bs-light);
+    padding: 5px 5px;
+    border-radius: 5px;
+}
+.navbar .uploadbtn{
+    padding: 5px 5px;
+    border: 2px solid var(--bs-light);
+    border-radius: 5px;
+    color: var(--bs-light);
+    text-decoration: none;
+}
+
+@media (max-width: 500px){
+    .navbar{
+        height: 3.9rem;
+    }
+    .navbar-min{
+        margin: 5px 11px;
+        position: relative;
+    }
+    .navbar .svg1{
+        position: absolute;
+        height: 210px;
+        width: 300px;
+        top: -6.5rem;
+        left: -5rem;
+    }
+    .navbar .access{
+        position: absolute;
+        top: -10px;
+        right: 5px;
+    }
+    .navbar .profile{
+        height: 70px;
+    }
+    .navbar .profile-admin{
+        background: var(--accent-main);
+        border: 2px solid var(--bs-light);
+        padding: 5px 5px;
+        border-radius: 5px;
+    }
+    .navbar .uploadbtn{
+        padding: 5px 5px;
+        border: 2px solid var(--bs-light);
+        border-radius: 5px;
+        color: var(--bs-light);
+        text-decoration: none;
+    }
+}
+
+
+
+
+/*======
+footer
+==============*/
+.foot{
+    background: var(--accent-main);
+    color: var(--bs-light);
+}
+.footer-head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-head .svg1{
+    position: absolute;
+    height: 40%;
+    width: 40%;
+    opacity: 1;
+    pointer-events: none;
+}
+@media (max-width: 500px){
+    .footer-head .svg1{
+        position: absolute;
+        height: 90%;
+        width: 90%;
+        opacity: 1;
+        pointer-events: none;
+    }
+}
+
+.foot li a{
+    color: var(--bs-light);
+}
+.newsletter-form input{
+    border: none;
+    padding: 5px;
+    border-radius: 1px;
+}
+.newsletter-form .submit{
+    padding: 5px;
+    background: var(--accent-main);
+    border: 1px solid var(--bs-light);
+    color: var(--bs-light);
+}
+.newsletter-form .submit:hover{
+    background: var(--accent-hover-dark);
+    border: 1px solid var(--bs-light);
+    color: var(--bs-light);
+}
+
+.footer-section{
+    background: #fa9613;
+    margin-bottom: -15px;
+    padding: 20px;
+}
+.footer-brand{
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+}
+
+.subscription-form h3{
+    text-align: center;
+    text-transform: capitalize;
+    color: white;
+}
+.subscription-form .subscription-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+.subscription-area input{
+    padding: 6px;
+    border: 1px solid white;
+    text-align: center;
+    border-radius: 5px;
+}
+.subscription-area button{
+    padding: 7px;
+    background: white;
+    border: 1px solid white;
+    border-radius: 15px;
+    color: #fa9613;
+}
+
+.footer-writeup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+.footer-writeup .footer-logo{
+    outline: none;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+.footer-writeup p{
+    text-align: center;
+    max-width: 50rem;
+    color: white;
+}
